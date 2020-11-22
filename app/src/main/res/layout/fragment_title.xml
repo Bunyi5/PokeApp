@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".title.TitleFragment">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#0F7CB6"
+        android:background="@color/blue"
         android:orientation="vertical">
 
         <ImageView
@@ -34,7 +33,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/poke_abilities_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -45,7 +44,7 @@
             app:layout_constraintTop_toBottomOf="@+id/poke_name_button" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/poke_types_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -53,7 +52,7 @@
             app:backgroundTint="#B89E1E"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button3" />
+            app:layout_constraintTop_toBottomOf="@+id/poke_abilities_button" />
 
         <Button
             android:id="@+id/button5"
@@ -64,10 +63,10 @@
             app:backgroundTint="#B89E1E"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button4" />
+            app:layout_constraintTop_toBottomOf="@+id/poke_types_button" />
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/recycle_view_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"

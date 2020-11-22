@@ -7,4 +7,5 @@
     <string name="recycler_view">Recycler View</string>
     <string name="pokemon_abilities">Pokemon Abilities</string>
     <string name="pokemon_types">Pokemon Types</string>
+    <string name="pokemon_details">Pokemon details</string>
 </resources>
