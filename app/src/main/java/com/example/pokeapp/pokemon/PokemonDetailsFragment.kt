@@ -14,12 +14,16 @@ import com.example.pokeapp.databinding.FragmentPokemonDetailsBinding
  */
 class PokemonDetailsFragment : Fragment() {
 
+    private lateinit var binding: FragmentPokemonDetailsBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<FragmentPokemonDetailsBinding>(inflater,
-            R.layout.fragment_pokemon_details, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_pokemon_details, container, false
+        )
 
         val args = PokemonDetailsFragmentArgs.fromBundle(requireArguments())
         binding.textView.text = args.pokemonName
