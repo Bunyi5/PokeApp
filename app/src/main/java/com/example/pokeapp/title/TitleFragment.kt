@@ -15,27 +15,38 @@ import com.example.pokeapp.databinding.FragmentTitleBinding
  */
 class TitleFragment : Fragment() {
 
-    override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        val binding = DataBindingUtil.inflate<FragmentTitleBinding>(inflater,
-                R.layout.fragment_title, container, false)
+    private lateinit var binding: FragmentTitleBinding
 
-        binding.pokeNameButton.setOnClickListener{ view : View ->
-            view.findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToPokemonListFragment())
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_title,
+            container,
+            false
+        )
+
+        binding.pokeNameButton.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(TitleFragmentDirections.actionTitleFragmentToPokemonListFragment())
         }
-        binding.pokeAbilitiesButton.setOnClickListener{ view : View ->
-            view.findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToBlankFragment())
+        binding.pokeAbilitiesButton.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(TitleFragmentDirections.actionTitleFragmentToBlankFragment())
         }
-        binding.pokeTypesButton.setOnClickListener{ view : View ->
-            view.findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToBlankFragment())
+        binding.pokeTypesButton.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(TitleFragmentDirections.actionTitleFragmentToBlankFragment())
         }
-        binding.button5.setOnClickListener{ view : View ->
-            view.findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToBlankFragment())
+        binding.button5.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(TitleFragmentDirections.actionTitleFragmentToBlankFragment())
         }
-        binding.recycleViewButton.setOnClickListener{ view : View ->
-            view.findNavController().navigate(TitleFragmentDirections.actionTitleFragmentToBlankFragment())
+        binding.recycleViewButton.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(TitleFragmentDirections.actionTitleFragmentToBlankFragment())
         }
 
         return binding.root

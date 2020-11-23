@@ -22,7 +22,9 @@ class PokemonDetailsFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(
             inflater,
-            R.layout.fragment_pokemon_details, container, false
+            R.layout.fragment_pokemon_details,
+            container,
+            false
         )
 
         val args = PokemonDetailsFragmentArgs.fromBundle(requireArguments())

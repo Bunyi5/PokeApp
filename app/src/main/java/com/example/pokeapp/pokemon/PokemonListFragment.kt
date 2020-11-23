@@ -20,19 +20,28 @@ class PokemonListFragment : Fragment() {
 
     private lateinit var viewModel: PokemonListViewModel
     private lateinit var viewModelFactory: PokemonListViewModelFactory
-    private var pokeNameList : List<String> = listOf("ditto", "charmander", "pikachu")
+    private var pokeNameList: List<String> = listOf("ditto", "charmander", "pikachu")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_pokemon_list, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_pokemon_list,
+            container,
+            false
+        )
 
         viewModelFactory = PokemonListViewModelFactory(pokeNameList)
         viewModel = ViewModelProvider(this, viewModelFactory).get(PokemonListViewModel::class.java)
 
-        binding.button.setOnClickListener{ view : View ->
-            view.findNavController().navigate(PokemonListFragmentDirections.actionPokemonListFragmentToPokemonDetailsFragment(viewModel.randomPokemonName))
+        binding.button.setOnClickListener { view: View ->
+            view.findNavController().navigate(
+                PokemonListFragmentDirections.actionPokemonListFragmentToPokemonDetailsFragment(
+                    viewModel.randomPokemonName
+                )
+            )
         }
         updateButtonText()
 
