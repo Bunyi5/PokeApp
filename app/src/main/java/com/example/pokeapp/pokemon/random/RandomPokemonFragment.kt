@@ -1,4 +1,4 @@
-package com.example.pokeapp.pokemon
+package com.example.pokeapp.pokemon.random
 
 import android.os.Bundle
 import android.view.LayoutInflater

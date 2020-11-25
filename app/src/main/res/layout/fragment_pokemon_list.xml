@@ -2,12 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".pokemon.PokemonListFragment">
+    tools:context=".pokemon.list.PokemonListFragment">
 
     <data>
         <variable
             name="pokemonListViewModel"
-            type="com.example.pokeapp.pokemon.PokemonListViewModel" />
+            type="com.example.pokeapp.pokemon.list.PokemonListViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
 
 
         <ScrollView
-            android:id="@+id/PokemonNamesScroll"
+            android:id="@+id/pokemonNamesScroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="24dp"
@@ -32,7 +32,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
-                android:id="@+id/PokemonNames"
+                android:id="@+id/pokemonNames"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

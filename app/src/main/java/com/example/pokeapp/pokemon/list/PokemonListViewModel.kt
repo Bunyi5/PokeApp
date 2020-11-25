@@ -1,4 +1,4 @@
-package com.example.pokeapp.pokemon
+package com.example.pokeapp.pokemon.list
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

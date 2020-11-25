@@ -1,4 +1,4 @@
-package com.example.pokeapp.pokemon
+package com.example.pokeapp.pokemon.details
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -28,7 +28,7 @@ class PokemonDetailsFragment : Fragment() {
         )
 
         val args = PokemonDetailsFragmentArgs.fromBundle(requireArguments())
-        binding.textView.text = args.pokemonName
+        binding.pokemonDetailsText.text = args.pokemonName
 
         return binding.root
     }

@@ -27,7 +27,7 @@
         tools:layout="@layout/fragment_blank" />
     <fragment
         android:id="@+id/pokemonListFragment"
-        android:name="com.example.pokeapp.pokemon.PokemonListFragment"
+        android:name="com.example.pokeapp.pokemon.list.PokemonListFragment"
         android:label="@string/poke_names"
         tools:layout="@layout/fragment_pokemon_list">
         <action
@@ -36,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/pokemonDetailsFragment"
-        android:name="com.example.pokeapp.pokemon.PokemonDetailsFragment"
+        android:name="com.example.pokeapp.pokemon.details.PokemonDetailsFragment"
         android:label="@string/pokemon_details"
         tools:layout="@layout/fragment_pokemon_details">
         <argument
@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/randomPokemonFragment"
-        android:name="com.example.pokeapp.pokemon.RandomPokemonFragment"
+        android:name="com.example.pokeapp.pokemon.random.RandomPokemonFragment"
         android:label="@string/random_pokemon"
         tools:layout="@layout/fragment_random_pokemon" />
 </navigation>

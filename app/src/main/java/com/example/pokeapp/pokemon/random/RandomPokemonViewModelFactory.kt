@@ -1,4 +1,4 @@
-package com.example.pokeapp.pokemon
+package com.example.pokeapp.pokemon.random
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

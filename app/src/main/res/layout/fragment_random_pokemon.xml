@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".pokemon.RandomPokemonFragment">
+    tools:context=".pokemon.random.RandomPokemonFragment">
 
     <data>
 
         <variable
             name="randomPokemonViewModel"
-            type="com.example.pokeapp.pokemon.RandomPokemonViewModel" />
+            type="com.example.pokeapp.pokemon.random.RandomPokemonViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,7 +16,7 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/random_pokemon_button"
+            android:id="@+id/randomPokemonButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{() -> randomPokemonViewModel.setRandomPokemonName()}"
@@ -27,11 +27,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/random_pokemon_text"
+            android:id="@+id/randomPokemonText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{randomPokemonViewModel.randomPokemonName}"
-            app:layout_constraintBottom_toTopOf="@+id/random_pokemon_button"
+            app:layout_constraintBottom_toTopOf="@+id/randomPokemonButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

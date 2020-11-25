@@ -1,4 +1,4 @@
-package com.example.pokeapp.pokemon
+package com.example.pokeapp.pokemon.list
 
 import android.graphics.Color
 import android.os.Bundle
@@ -52,7 +52,7 @@ class PokemonListFragment : Fragment() {
         viewModel.pokeNames.observe(viewLifecycleOwner, Observer { pokemonList ->
             pokemonNames.clear()
             pokemonList.forEach { pokemon -> pokemonNames.add(pokemon.name) }
-            handleClick(binding.PokemonNames)
+            handleClick(binding.pokemonNames)
         })
 
         return binding.root
