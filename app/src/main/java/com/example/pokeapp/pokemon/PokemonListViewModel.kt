@@ -1,28 +1,26 @@
 package com.example.pokeapp.pokemon
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.pokeapp.database.Pokemon
 import timber.log.Timber
-import kotlin.random.Random
 
-class PokemonListViewModel(private val pokeNameList: List<String>) : ViewModel() {
+// TODO: 2020. 11. 24. Change list to database reference
+class PokemonListViewModel(pokeNameList: List<Pokemon>) : ViewModel() {
 
-    lateinit var randomPokemonName: String
+    // TODO: 2020. 11. 24. Change list to database reference
+    private val _pokeNames = MutableLiveData<List<Pokemon>>()
+    val pokeNames: LiveData<List<Pokemon>>
+        get() = _pokeNames
 
     init {
-        setRandomPokemonName()
+        _pokeNames.value = pokeNameList
         Timber.i("PokemonListViewModel created!")
     }
 
     override fun onCleared() {
         super.onCleared()
         Timber.i("PokemonListViewModel destroyed!")
-    }
-
-    private fun setRandomPokemonName() {
-        randomPokemonName = pokeNameList[getRandomNumber()]
-    }
-
-    private fun getRandomNumber(): Int {
-        return Random.nextInt(0, 3)
     }
 }

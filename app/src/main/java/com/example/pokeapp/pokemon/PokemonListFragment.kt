@@ -1,14 +1,19 @@
 package com.example.pokeapp.pokemon
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.pokeapp.R
+import com.example.pokeapp.database.Pokemon
 import com.example.pokeapp.databinding.FragmentPokemonListBinding
 
 /**
@@ -20,7 +25,12 @@ class PokemonListFragment : Fragment() {
 
     private lateinit var viewModel: PokemonListViewModel
     private lateinit var viewModelFactory: PokemonListViewModelFactory
-    private var pokeNameList: List<String> = listOf("ditto", "charmander", "pikachu")
+
+    private var pokemonNames: MutableList<String> = mutableListOf()
+
+    // TODO: 2020. 11. 24. Change list to database reference
+    private var pokeNameList: List<Pokemon> =
+        listOf(Pokemon("ditto"), Pokemon("charmander"), Pokemon("pikachu"))
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,20 +46,37 @@ class PokemonListFragment : Fragment() {
         viewModelFactory = PokemonListViewModelFactory(pokeNameList)
         viewModel = ViewModelProvider(this, viewModelFactory).get(PokemonListViewModel::class.java)
 
-        binding.button.setOnClickListener { view: View ->
-            view.findNavController().navigate(
-                PokemonListFragmentDirections.actionPokemonListFragmentToPokemonDetailsFragment(
-                    viewModel.randomPokemonName
-                )
-            )
-        }
-        updateButtonText()
+        binding.pokemonListViewModel = viewModel
+        binding.lifecycleOwner = viewLifecycleOwner
+
+        viewModel.pokeNames.observe(viewLifecycleOwner, Observer { pokemonList ->
+            pokemonNames.clear()
+            pokemonList.forEach { pokemon -> pokemonNames.add(pokemon.name) }
+            handleClick(binding.PokemonNames)
+        })
 
         return binding.root
     }
 
-    private fun updateButtonText() {
-        binding.button.text = viewModel.randomPokemonName
+    private fun handleClick(layout: LinearLayout) {
+        layout.visibility = View.VISIBLE
+        pokemonNames.forEach { pokemon ->
+            val button = Button(this.context)
+            button.layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            button.setBackgroundColor(Color.TRANSPARENT)
+            button.text = pokemon
+            button.setTextColor(Color.YELLOW)
+            button.setOnClickListener {
+                this.findNavController().navigate(
+                    PokemonListFragmentDirections.actionPokemonListFragmentToPokemonDetailsFragment(
+                        pokemon
+                    )
+                )
+            }
+            layout.addView(button)
+        }
     }
-
 }
