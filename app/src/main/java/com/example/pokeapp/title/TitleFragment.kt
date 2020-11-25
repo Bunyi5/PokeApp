@@ -32,9 +32,9 @@ class TitleFragment : Fragment() {
             view.findNavController()
                 .navigate(TitleFragmentDirections.actionTitleFragmentToPokemonListFragment())
         }
-        binding.pokeAbilitiesButton.setOnClickListener { view: View ->
+        binding.randomTitleButton.setOnClickListener { view: View ->
             view.findNavController()
-                .navigate(TitleFragmentDirections.actionTitleFragmentToBlankFragment())
+                .navigate(TitleFragmentDirections.actionTitleFragmentToRandomPokemonFragment())
         }
         binding.pokeTypesButton.setOnClickListener { view: View ->
             view.findNavController()

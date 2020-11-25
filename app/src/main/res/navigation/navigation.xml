@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_titleFragment_to_pokemonListFragment"
             app:destination="@id/pokemonListFragment" />
+        <action
+            android:id="@+id/action_titleFragment_to_randomPokemonFragment"
+            app:destination="@id/randomPokemonFragment" />
     </fragment>
     <fragment
         android:id="@+id/blankFragment"
@@ -25,7 +28,7 @@
     <fragment
         android:id="@+id/pokemonListFragment"
         android:name="com.example.pokeapp.pokemon.PokemonListFragment"
-        android:label="Pokemon Names"
+        android:label="@string/poke_names"
         tools:layout="@layout/fragment_pokemon_list">
         <action
             android:id="@+id/action_pokemonListFragment_to_pokemonDetailsFragment"
@@ -34,10 +37,15 @@
     <fragment
         android:id="@+id/pokemonDetailsFragment"
         android:name="com.example.pokeapp.pokemon.PokemonDetailsFragment"
-        android:label="Pokemon Details"
+        android:label="@string/pokemon_details"
         tools:layout="@layout/fragment_pokemon_details">
         <argument
             android:name="pokemonName"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/randomPokemonFragment"
+        android:name="com.example.pokeapp.pokemon.RandomPokemonFragment"
+        android:label="@string/random_pokemon"
+        tools:layout="@layout/fragment_random_pokemon" />
 </navigation>

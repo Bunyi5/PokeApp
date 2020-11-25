@@ -26,18 +26,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@string/poke_name_button"
+            android:text="@string/poke_names"
             app:backgroundTint="#B89E1E"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <Button
-            android:id="@+id/poke_abilities_button"
+            android:id="@+id/random_title_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@string/pokemon_abilities"
+            android:text="@string/random_pokemon"
             app:backgroundTint="#B89E1E"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
             app:backgroundTint="#B89E1E"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/poke_abilities_button" />
+            app:layout_constraintTop_toBottomOf="@+id/random_title_button" />
 
         <Button
             android:id="@+id/button5"
