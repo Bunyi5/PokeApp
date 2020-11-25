@@ -8,4 +8,7 @@
     <string name="random_pokemon">Random Pokemon</string>
     <string name="pokemon_types">Pokemon Types</string>
     <string name="pokemon_details">Pokemon Details</string>
+    <string name="name" >Name:</string>
+    <string name="hexadecimal">Hexadecimal:</string>
+    <string name="press_button">Press the button to get a random pokemon!</string>
 </resources>

@@ -2,6 +2,7 @@ package com.example.pokeapp.pokemon.random
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.pokeapp.database.Pokemon
 import timber.log.Timber
@@ -14,8 +15,12 @@ class RandomPokemonViewModel(private val pokeNameList: List<Pokemon>) : ViewMode
     val randomPokemonName: LiveData<String>
         get() = _randomPokemonName
 
+    val randomPokemonHex = Transformations.map(randomPokemonName) { text ->
+        text.toByteArray().toHexString()
+    }
+
     init {
-        _randomPokemonName.value = "Press the button to get a random pokemon!"
+        _randomPokemonName.value = ""
         Timber.i("RandomPokemonViewModel created!")
     }
 
@@ -30,5 +35,11 @@ class RandomPokemonViewModel(private val pokeNameList: List<Pokemon>) : ViewMode
 
     private fun getRandomNumber(): Int {
         return Random.nextInt(0, pokeNameList.size)
+    }
+
+    private fun ByteArray.toHexString() : String {
+        return this.joinToString("") {
+            java.lang.String.format("%02x", it)
+        }
     }
 }
