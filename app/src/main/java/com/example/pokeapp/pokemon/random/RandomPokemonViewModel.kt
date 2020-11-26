@@ -2,11 +2,13 @@ package com.example.pokeapp.pokemon.random
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.example.pokeapp.database.PokemonDatabaseDao
+import com.example.pokeapp.database.PokemonDatabase
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
-class RandomPokemonViewModel(val database: PokemonDatabaseDao, application: Application) : AndroidViewModel(application) {
+class RandomPokemonViewModel(application: Application) : AndroidViewModel(application) {
+
+    private var database = PokemonDatabase.getInstance(application, viewModelScope).pokemonDatabaseDao
 
     private val _randomPokemonName = MutableLiveData<String?>()
     val randomPokemonName: LiveData<String?>
@@ -17,7 +19,7 @@ class RandomPokemonViewModel(val database: PokemonDatabaseDao, application: Appl
     }
 
     init {
-        _randomPokemonName.value = ""
+        setRandomPokemonName()
         Timber.i("RandomPokemonViewModel created!")
     }
 

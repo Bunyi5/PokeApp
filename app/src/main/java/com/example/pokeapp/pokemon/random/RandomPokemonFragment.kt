@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.pokeapp.R
-import com.example.pokeapp.database.PokemonDatabase
 import com.example.pokeapp.databinding.FragmentRandomPokemonBinding
 
 class RandomPokemonFragment : Fragment() {
@@ -30,9 +29,8 @@ class RandomPokemonFragment : Fragment() {
         )
 
         val application = requireNotNull(this.activity).application
-        val dataSource = PokemonDatabase.getInstance(application).pokemonDatabaseDao
 
-        viewModelFactory = RandomPokemonViewModelFactory(dataSource, application)
+        viewModelFactory = RandomPokemonViewModelFactory(application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(RandomPokemonViewModel::class.java)
 
         binding.randomPokemonViewModel = viewModel

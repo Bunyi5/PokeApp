@@ -8,7 +8,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.pokeapp.R
-import com.example.pokeapp.database.PokemonDatabase
 import com.example.pokeapp.databinding.FragmentPokemonDetailsBinding
 
 /**
@@ -33,11 +32,9 @@ class PokemonDetailsFragment : Fragment() {
         )
 
         val application = requireNotNull(this.activity).application
-        val dataSource = PokemonDatabase.getInstance(application).pokemonDatabaseDao
-
         val args = PokemonDetailsFragmentArgs.fromBundle(requireArguments())
 
-        viewModelFactory = PokemonDetailsViewModelFactory(dataSource, application, args.pokemonName)
+        viewModelFactory = PokemonDetailsViewModelFactory(application, args.pokemonName)
         viewModel = ViewModelProvider(this, viewModelFactory).get(PokemonDetailsViewModel::class.java)
 
         binding.pokemonDetailsViewModel = viewModel

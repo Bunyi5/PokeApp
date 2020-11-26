@@ -13,7 +13,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.pokeapp.R
-import com.example.pokeapp.database.PokemonDatabase
 import com.example.pokeapp.databinding.FragmentPokemonListBinding
 
 /**
@@ -41,9 +40,8 @@ class PokemonListFragment : Fragment() {
         )
 
         val application = requireNotNull(this.activity).application
-        val dataSource = PokemonDatabase.getInstance(application).pokemonDatabaseDao
 
-        viewModelFactory = PokemonListViewModelFactory(dataSource, application)
+        viewModelFactory = PokemonListViewModelFactory(application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(PokemonListViewModel::class.java)
 
         binding.pokemonListViewModel = viewModel

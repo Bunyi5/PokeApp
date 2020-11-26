@@ -21,7 +21,6 @@
             android:id="@+id/pokemonNamesScroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/DP100"
             android:fillViewport="true"
             android:orientation="vertical"
             android:textAlignment="center"
@@ -38,17 +37,5 @@
                 android:orientation="vertical"
                 android:textAlignment="center" />
         </ScrollView>
-
-        <!--TODO Delete button in the future-->
-        <Button
-            android:id="@+id/insertButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> pokemonListViewModel.editDatabase()}"
-            android:text="Insert"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pokemonNamesScroll" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

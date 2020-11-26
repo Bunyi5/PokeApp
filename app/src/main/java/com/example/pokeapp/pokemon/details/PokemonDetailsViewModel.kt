@@ -5,10 +5,12 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.pokeapp.database.PokemonDatabaseDao
+import com.example.pokeapp.database.PokemonDatabase
 import kotlinx.coroutines.launch
 
-class PokemonDetailsViewModel(val database: PokemonDatabaseDao, application: Application, val pokemonName: String) : AndroidViewModel(application) {
+class PokemonDetailsViewModel(application: Application, val pokemonName: String) : AndroidViewModel(application) {
+
+    private val database = PokemonDatabase.getInstance(application, viewModelScope).pokemonDatabaseDao
 
     private var _pokemonId = MutableLiveData<Long>()
     val pokemonId: LiveData<Long>
