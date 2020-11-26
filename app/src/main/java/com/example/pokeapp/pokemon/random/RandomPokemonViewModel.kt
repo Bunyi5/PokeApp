@@ -1,22 +1,19 @@
 package com.example.pokeapp.pokemon.random
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import com.example.pokeapp.database.Pokemon
+import android.app.Application
+import androidx.lifecycle.*
+import com.example.pokeapp.database.PokemonDatabaseDao
+import kotlinx.coroutines.launch
 import timber.log.Timber
-import kotlin.random.Random
 
-class RandomPokemonViewModel(private val pokeNameList: List<Pokemon>) : ViewModel() {
+class RandomPokemonViewModel(val database: PokemonDatabaseDao, application: Application) : AndroidViewModel(application) {
 
-    // TODO: 2020. 11. 24. Change list to database reference
-    private val _randomPokemonName = MutableLiveData<String>()
-    val randomPokemonName: LiveData<String>
+    private val _randomPokemonName = MutableLiveData<String?>()
+    val randomPokemonName: LiveData<String?>
         get() = _randomPokemonName
 
     val randomPokemonHex = Transformations.map(randomPokemonName) { text ->
-        text.toByteArray().toHexString()
+        text?.toByteArray()?.toHexString()
     }
 
     init {
@@ -24,17 +21,10 @@ class RandomPokemonViewModel(private val pokeNameList: List<Pokemon>) : ViewMode
         Timber.i("RandomPokemonViewModel created!")
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        Timber.i("RandomPokemonViewModel destroyed!")
-    }
-
     fun setRandomPokemonName() {
-        _randomPokemonName.value = pokeNameList[getRandomNumber()].name
-    }
-
-    private fun getRandomNumber(): Int {
-        return Random.nextInt(0, pokeNameList.size)
+        viewModelScope.launch {
+            _randomPokemonName.value = database.getRandomPokemon()?.pokeName
+        }
     }
 
     private fun ByteArray.toHexString() : String {

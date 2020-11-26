@@ -1,26 +1,48 @@
 package com.example.pokeapp.pokemon.list
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.pokeapp.database.Pokemon
+import com.example.pokeapp.database.PokemonDatabaseDao
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
-// TODO: 2020. 11. 24. Change list to database reference
-class PokemonListViewModel(pokeNameList: List<Pokemon>) : ViewModel() {
+class PokemonListViewModel(val database: PokemonDatabaseDao, application: Application) : AndroidViewModel(application) {
 
-    // TODO: 2020. 11. 24. Change list to database reference
-    private val _pokeNames = MutableLiveData<List<Pokemon>>()
+    private var _pokeNames = database.getAllPokemon()
     val pokeNames: LiveData<List<Pokemon>>
         get() = _pokeNames
 
     init {
-        _pokeNames.value = pokeNameList
         Timber.i("PokemonListViewModel created!")
     }
 
     override fun onCleared() {
         super.onCleared()
         Timber.i("PokemonListViewModel destroyed!")
+    }
+
+    // TODO: 2020. 11. 26. Delete editDatabase in the future
+    fun editDatabase() {
+        viewModelScope.launch {
+            clearDatabase()
+            insertIntoDatabase()
+        }
+    }
+
+    private suspend fun clearDatabase() {
+        database.clear()
+    }
+
+    private suspend fun insertIntoDatabase() {
+        val pokemon1 = Pokemon()
+        val pokemon2 = Pokemon()
+
+        pokemon1.pokeName = "charmander"
+        pokemon2.pokeName = "ditto"
+
+        database.insertAll(listOf(pokemon1, pokemon2))
     }
 }

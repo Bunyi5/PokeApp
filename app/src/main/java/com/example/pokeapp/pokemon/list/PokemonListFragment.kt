@@ -13,7 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.pokeapp.R
-import com.example.pokeapp.database.Pokemon
+import com.example.pokeapp.database.PokemonDatabase
 import com.example.pokeapp.databinding.FragmentPokemonListBinding
 
 /**
@@ -28,9 +28,6 @@ class PokemonListFragment : Fragment() {
 
     private var pokemonNames: MutableList<String> = mutableListOf()
 
-    // TODO: 2020. 11. 24. Change list to database reference
-    private var pokeNameList: List<Pokemon> =
-        listOf(Pokemon("ditto"), Pokemon("charmander"), Pokemon("pikachu"))
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +40,10 @@ class PokemonListFragment : Fragment() {
             false
         )
 
-        viewModelFactory = PokemonListViewModelFactory(pokeNameList)
+        val application = requireNotNull(this.activity).application
+        val dataSource = PokemonDatabase.getInstance(application).pokemonDatabaseDao
+
+        viewModelFactory = PokemonListViewModelFactory(dataSource, application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(PokemonListViewModel::class.java)
 
         binding.pokemonListViewModel = viewModel
@@ -51,7 +51,7 @@ class PokemonListFragment : Fragment() {
 
         viewModel.pokeNames.observe(viewLifecycleOwner, Observer { pokemonList ->
             pokemonNames.clear()
-            pokemonList.forEach { pokemon -> pokemonNames.add(pokemon.name) }
+            pokemonList.forEach { pokemon -> pokemonNames.add(pokemon.pokeName) }
             handleClick(binding.pokemonNames)
         })
 

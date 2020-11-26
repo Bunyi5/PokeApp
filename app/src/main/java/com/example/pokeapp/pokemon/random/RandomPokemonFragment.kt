@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.pokeapp.R
-import com.example.pokeapp.database.Pokemon
+import com.example.pokeapp.database.PokemonDatabase
 import com.example.pokeapp.databinding.FragmentRandomPokemonBinding
 
 class RandomPokemonFragment : Fragment() {
@@ -17,10 +17,6 @@ class RandomPokemonFragment : Fragment() {
 
     private lateinit var viewModel: RandomPokemonViewModel
     private lateinit var viewModelFactory: RandomPokemonViewModelFactory
-
-    // TODO: 2020. 11. 25. Change list to database reference
-    private var pokeNameList: List<Pokemon> =
-        listOf(Pokemon("ditto"), Pokemon("charmander"), Pokemon("pikachu"))
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +29,10 @@ class RandomPokemonFragment : Fragment() {
             false
         )
 
-        viewModelFactory = RandomPokemonViewModelFactory(pokeNameList)
+        val application = requireNotNull(this.activity).application
+        val dataSource = PokemonDatabase.getInstance(application).pokemonDatabaseDao
+
+        viewModelFactory = RandomPokemonViewModelFactory(dataSource, application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(RandomPokemonViewModel::class.java)
 
         binding.randomPokemonViewModel = viewModel
