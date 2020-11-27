@@ -5,12 +5,15 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.example.pokeapp.network.PokeApi
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 
 @Database(entities = [Pokemon::class], version = 1, exportSchema = false)
-abstract class PokemonDatabase: RoomDatabase() {
+abstract class PokemonDatabase : RoomDatabase() {
 
     abstract val pokemonDatabaseDao: PokemonDatabaseDao
 
@@ -19,25 +22,26 @@ abstract class PokemonDatabase: RoomDatabase() {
     ) : RoomDatabase.Callback() {
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
+            createDatabase()
+        }
+
+        private fun createDatabase() {
             INSTANCE?.let { database ->
                 scope.launch {
-                    val pokemonDatabaseDao = database.pokemonDatabaseDao
-                    prePopulateDatabase(pokemonDatabaseDao)
+                    withContext(Dispatchers.IO) {
+                        insertIntoDatabase(database.pokemonDatabaseDao)
+                    }
                 }
             }
         }
 
-        private suspend fun prePopulateDatabase(pokemonDatabaseDao: PokemonDatabaseDao) {
-            val pokemon1 = Pokemon()
-            val pokemon2 = Pokemon()
-            val pokemon3 = Pokemon()
-
-            pokemon1.pokeName = "charmander"
-            pokemon2.pokeName = "ditto"
-            pokemon3.pokeName = "bulbasaur"
-            Timber.i("Insert is done!")
-
-            pokemonDatabaseDao.insertAll(listOf(pokemon1, pokemon2, pokemon3))
+        private suspend fun insertIntoDatabase(pokemonDatabaseDao: PokemonDatabaseDao) {
+            try {
+                pokemonDatabaseDao.insertAll(PokeApi.retrofitService.getPokemons().results)
+                Timber.i("Success: Pokemons received and inserted in the database")
+            } catch (e: Exception) {
+                Timber.i("Failure: ${e.message}")
+            }
         }
     }
 
@@ -53,9 +57,9 @@ abstract class PokemonDatabase: RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         PokemonDatabase::class.java,
-                        "pokemon_database")
+                        "pokemon_database"
+                    )
                         .addCallback(PokemonDatabaseCallback(coroutineScope))
-                        .fallbackToDestructiveMigration()
                         .build()
                     INSTANCE = instance
                 }

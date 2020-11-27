@@ -36,18 +36,6 @@ class TitleFragment : Fragment() {
             view.findNavController()
                 .navigate(TitleFragmentDirections.actionTitleFragmentToRandomPokemonFragment())
         }
-        binding.pokeTypesButton.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(TitleFragmentDirections.actionTitleFragmentToBlankFragment())
-        }
-        binding.button5.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(TitleFragmentDirections.actionTitleFragmentToBlankFragment())
-        }
-        binding.recycleViewButton.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(TitleFragmentDirections.actionTitleFragmentToBlankFragment())
-        }
 
         return binding.root
     }

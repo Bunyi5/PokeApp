@@ -44,28 +44,6 @@
             app:layout_constraintTop_toBottomOf="@+id/pokeNameButton" />
 
         <Button
-            android:id="@+id/pokeTypesButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/pokemon_types"
-            app:backgroundTint="#B89E1E"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/randomPokeButton" />
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/hello_blank_fragment"
-            app:backgroundTint="#B89E1E"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pokeTypesButton" />
-
-        <Button
             android:id="@+id/recycleViewButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -74,7 +52,7 @@
             app:backgroundTint="#B89E1E"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button5" />
+            app:layout_constraintTop_toBottomOf="@+id/randomPokeButton" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

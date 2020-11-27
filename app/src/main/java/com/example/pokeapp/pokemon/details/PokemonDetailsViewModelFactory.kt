@@ -7,13 +7,13 @@ import timber.log.Timber
 
 class PokemonDetailsViewModelFactory(
     private val application: Application,
-    private val pokemonName: String
+    private val pokeName: String
 ) : ViewModelProvider.Factory {
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(PokemonDetailsViewModel::class.java)) {
             Timber.i("PokemonDetailsViewModelFactory created!")
-            return PokemonDetailsViewModel(application, pokemonName) as T
+            return PokemonDetailsViewModel(application, pokeName) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
