@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.pokeapp.database.Ability
 import com.example.pokeapp.database.PokemonDatabase
 import com.example.pokeapp.database.PokemonDetails
 import com.example.pokeapp.network.PokeApi
@@ -15,17 +14,9 @@ class PokemonDetailsViewModel(application: Application, var pokeId: Long) : Andr
 
     private val database = PokemonDatabase.getInstance(application, viewModelScope).pokemonDatabaseDao
 
-    private var _pokemonId = MutableLiveData<Long>()
-    val pokemonId: LiveData<Long>
-        get() = _pokemonId
-
-    private var _pokemonName = MutableLiveData<String>()
-    val pokemonName: LiveData<String>
-        get() = _pokemonName
-
-    private var _pokemonAbilities = MutableLiveData<List<Ability>>()
-    val pokemonAbilities: LiveData<List<Ability>>
-        get() = _pokemonAbilities
+    private var _pokemonDetails = MutableLiveData<PokemonDetails>()
+    val pokemonDetails: LiveData<PokemonDetails>
+        get() = _pokemonDetails
 
     init {
         setPokemonDetails()
@@ -36,9 +27,7 @@ class PokemonDetailsViewModel(application: Application, var pokeId: Long) : Andr
             val id = getPokemonApiId()
             if (id != null) {
                 val pokemonDetails: PokemonDetails = PokeApi.retrofitService.getPokemonDetails(id)
-                _pokemonId.value = id.toLong()
-                _pokemonName.value = pokemonDetails.pokeName
-                _pokemonAbilities.value = pokemonDetails.abilities
+                _pokemonDetails.value = pokemonDetails
             }
         }
     }

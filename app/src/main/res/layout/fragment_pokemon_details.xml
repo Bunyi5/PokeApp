@@ -5,6 +5,7 @@
     tools:context=".pokemon.details.PokemonDetailsFragment">
 
     <data>
+
         <variable
             name="pokemonDetailsViewModel"
             type="com.example.pokeapp.pokemon.details.PokemonDetailsViewModel" />
@@ -12,76 +13,138 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/light_blue">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textViewName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/pokemon_id"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/basic_start_margin"
+            android:layout_marginTop="@dimen/distance_between_top"
+            android:text="@string/pokemon_name"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/header_text_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/pokemonId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@{String.valueOf(pokemonDetailsViewModel.pokemonId)}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/pokemon_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pokemonId" />
 
         <TextView
             android:id="@+id/pokemonName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@{pokemonDetailsViewModel.pokemonName}"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/basic_start_margin"
+            android:layout_marginTop="@dimen/distance_header_child"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewName" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textViewHeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/pokemon_abilities"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginStart="@dimen/basic_start_margin"
+            android:layout_marginTop="@dimen/distance_between_elements"
+            android:text="@string/height"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/header_text_size"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pokemonName" />
 
+        <TextView
+            android:id="@+id/pokemonHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/basic_start_margin"
+            android:layout_marginTop="@dimen/distance_header_child"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewHeight" />
+
+        <TextView
+            android:id="@+id/textViewWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/basic_start_margin"
+            android:layout_marginTop="@dimen/distance_between_elements"
+            android:text="@string/weight"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/header_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pokemonHeight" />
+
+        <TextView
+            android:id="@+id/pokemonWeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/basic_start_margin"
+            android:layout_marginTop="@dimen/distance_header_child"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewWeight" />
+
+        <TextView
+            android:id="@+id/textViewAbilities"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/basic_start_margin"
+            android:layout_marginTop="@dimen/distance_between_elements"
+            android:text="@string/Abilities"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/header_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pokemonWeight" />
+
         <ScrollView
+            android:id="@+id/scrollViewAbilities"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:fillViewport="true"
+            android:layout_height="@dimen/DP50"
+            android:layout_marginTop="@dimen/distance_header_child"
+            android:fadeScrollbars="false"
             android:orientation="vertical"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingLeft="@dimen/basic_start_margin"
+            android:paddingRight="@dimen/basic_start_margin"
+            android:textAlignment="textStart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5">
+            app:layout_constraintTop_toBottomOf="@+id/textViewAbilities">
 
             <LinearLayout
                 android:id="@+id/abilitiesList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:orientation="vertical"
-                android:textAlignment="center" />
+                android:orientation="vertical" />
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/textViewMoves"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/basic_start_margin"
+            android:layout_marginTop="@dimen/distance_between_elements"
+            android:text="@string/moves"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/header_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scrollViewAbilities" />
+
+        <ScrollView
+            android:id="@+id/scrollViewMoves"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/distance_header_child"
+            android:layout_marginBottom="@dimen/distance_between_bottom"
+            android:fadeScrollbars="false"
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/basic_start_margin"
+            android:paddingRight="@dimen/basic_start_margin"
+            android:textAlignment="textStart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMoves">
+
+            <LinearLayout
+                android:id="@+id/movesList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

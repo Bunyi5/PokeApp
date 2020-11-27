@@ -17,5 +17,4 @@ class RandomPokemonViewModelFactory(
         throw IllegalArgumentException("Unknown ViewModel class")
     }
 
-
 }

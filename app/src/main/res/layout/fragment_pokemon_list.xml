@@ -5,6 +5,7 @@
     tools:context=".pokemon.list.PokemonListFragment">
 
     <data>
+
         <variable
             name="pokemonListViewModel"
             type="com.example.pokeapp.pokemon.list.PokemonListViewModel" />
@@ -13,7 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/blue"
+        android:background="@color/light_blue"
         android:orientation="vertical">
 
 

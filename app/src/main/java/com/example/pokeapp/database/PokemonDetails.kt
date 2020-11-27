@@ -4,9 +4,15 @@ import com.squareup.moshi.Json
 
 data class PokemonDetails(
     @Json(name = "name")
-    var pokeName: String = "",
+    var pokeName: String,
 
-    var abilities: List<Ability>
+    var height: Int,
+
+    var weight: Int,
+
+    var abilities: List<Ability>,
+
+    var moves: List<Moves>
 )
 
 data class Ability(
@@ -15,5 +21,14 @@ data class Ability(
 
 data class AbilityName(
     @Json(name = "name")
-    var abilityName: String = ""
+    var abilityName: String
+)
+
+data class Moves(
+    var move: MoveName
+)
+
+data class MoveName(
+    @Json(name = "name")
+    var moveName: String
 )

@@ -7,7 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/blue"
+        android:background="@color/light_blue"
         android:orientation="vertical">
 
         <ImageView
@@ -23,33 +23,36 @@
 
         <Button
             android:id="@+id/pokeNameButton"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/basic_button_size"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/distance_between_elements"
             android:text="@string/poke_names"
-            app:backgroundTint="#B89E1E"
+            android:textColor="@color/yellow"
+            app:backgroundTint="@color/blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pokemonLogo" />
 
         <Button
             android:id="@+id/randomPokeButton"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/basic_button_size"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/distance_between_elements"
             android:text="@string/random_pokemon"
-            app:backgroundTint="#B89E1E"
+            android:textColor="@color/yellow"
+            app:backgroundTint="@color/blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pokeNameButton" />
 
         <Button
             android:id="@+id/recycleViewButton"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/basic_button_size"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/distance_between_elements"
             android:text="@string/recycler_view"
-            app:backgroundTint="#B89E1E"
+            android:textColor="@color/yellow"
+            app:backgroundTint="@color/blue"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/randomPokeButton" />

@@ -13,24 +13,31 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/light_blue">
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/distance_between_top"
             android:text="@string/press_button"
+            android:textAlignment="center"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/header_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/distance_between_elements"
             android:text="@string/name"
+            android:textAlignment="center"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/header_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -39,7 +46,7 @@
             android:id="@+id/randomPokemonText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/distance_header_child"
             android:text="@{randomPokemonViewModel.randomPokemonName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,10 +54,13 @@
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/distance_between_elements"
             android:text="@string/hexadecimal"
+            android:textAlignment="center"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/header_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/randomPokemonText" />
@@ -59,7 +69,7 @@
             android:id="@+id/randomPokemonHex"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/distance_header_child"
             android:text="@{randomPokemonViewModel.randomPokemonHex}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -67,13 +77,14 @@
 
         <Button
             android:id="@+id/randomPokemonButton"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/basic_button_size"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="@dimen/DP8"
+            android:backgroundTint="@color/blue"
             android:onClick="@{() -> randomPokemonViewModel.setRandomPokemonName()}"
             android:text="@string/random_pokemon"
+            android:textColor="@color/yellow"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/randomPokemonHex" />
 

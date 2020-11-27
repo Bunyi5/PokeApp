@@ -1,6 +1,5 @@
 package com.example.pokeapp.pokemon.details
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -44,26 +43,26 @@ class PokemonDetailsFragment : Fragment() {
         binding.pokemonDetailsViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.pokemonAbilities.observe(viewLifecycleOwner, Observer { abilityList ->
-            abilityList.forEach {
-                drawAbilities(binding.abilitiesList, it.ability.abilityName)
+        viewModel.pokemonDetails.observe(viewLifecycleOwner, Observer { pokemonDetails ->
+            binding.pokemonName.text = pokemonDetails.pokeName
+            binding.pokemonHeight.text = pokemonDetails.height.toString()
+            binding.pokemonWeight.text = pokemonDetails.weight.toString()
+
+            pokemonDetails.abilities.forEach {
+                drawList(binding.abilitiesList, it.ability.abilityName)
+            }
+
+            pokemonDetails.moves.forEach {
+                drawList(binding.movesList, it.move.moveName)
             }
         })
 
         return binding.root
     }
 
-    private fun drawAbilities(layout: LinearLayout, abilityName: String) {
-        layout.visibility = View.VISIBLE
+    private fun drawList(layout: LinearLayout, abilityName: String) {
         val textView = TextView(this.context)
-        textView.layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-        textView.textAlignment = View.TEXT_ALIGNMENT_CENTER
-        textView.setBackgroundColor(Color.TRANSPARENT)
         textView.text = abilityName
-        textView.setTextColor(Color.YELLOW)
         layout.addView(textView)
     }
 }

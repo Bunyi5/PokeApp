@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -55,15 +56,11 @@ class PokemonListFragment : Fragment() {
     }
 
     private fun handleClick(layout: LinearLayout, pokemon: Pokemon) {
-        layout.visibility = View.VISIBLE
         val button = Button(this.context)
-        button.layoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT
-        )
-        button.setBackgroundColor(Color.TRANSPARENT)
         button.text = pokemon.pokeName
-        button.setTextColor(Color.YELLOW)
+        button.textSize = 18F
+        button.setBackgroundColor(Color.TRANSPARENT)
+        button.setTextColor(ResourcesCompat.getColor(resources, R.color.yellow, null))
         button.setOnClickListener {
             this.findNavController().navigate(
                 PokemonListFragmentDirections.actionPokemonListFragmentToPokemonDetailsFragment(
