@@ -13,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.pokeapp.R
+import com.example.pokeapp.database.Pokemon
 import com.example.pokeapp.databinding.FragmentPokemonListBinding
 
 /**
@@ -24,9 +25,6 @@ class PokemonListFragment : Fragment() {
 
     private lateinit var viewModel: PokemonListViewModel
     private lateinit var viewModelFactory: PokemonListViewModelFactory
-
-    private var pokemonNames: MutableList<String> = mutableListOf()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,33 +46,31 @@ class PokemonListFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         viewModel.pokeNames.observe(viewLifecycleOwner, Observer { pokemonList ->
-            pokemonNames.clear()
-            pokemonList.forEach { pokemon -> pokemonNames.add(pokemon.pokeName) }
-            handleClick(binding.pokemonNames)
+            pokemonList.forEach { pokemon ->
+                handleClick(binding.pokemonNames, pokemon)
+            }
         })
 
         return binding.root
     }
 
-    private fun handleClick(layout: LinearLayout) {
+    private fun handleClick(layout: LinearLayout, pokemon: Pokemon) {
         layout.visibility = View.VISIBLE
-        pokemonNames.forEach { pokemon ->
-            val button = Button(this.context)
-            button.layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            )
-            button.setBackgroundColor(Color.TRANSPARENT)
-            button.text = pokemon
-            button.setTextColor(Color.YELLOW)
-            button.setOnClickListener {
-                this.findNavController().navigate(
-                    PokemonListFragmentDirections.actionPokemonListFragmentToPokemonDetailsFragment(
-                        pokemon
-                    )
+        val button = Button(this.context)
+        button.layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        )
+        button.setBackgroundColor(Color.TRANSPARENT)
+        button.text = pokemon.pokeName
+        button.setTextColor(Color.YELLOW)
+        button.setOnClickListener {
+            this.findNavController().navigate(
+                PokemonListFragmentDirections.actionPokemonListFragmentToPokemonDetailsFragment(
+                    pokemon.id
                 )
-            }
-            layout.addView(button)
+            )
         }
+        layout.addView(button)
     }
 }

@@ -38,7 +38,7 @@ class PokemonDetailsFragment : Fragment() {
         val application = requireNotNull(this.activity).application
         val args = PokemonDetailsFragmentArgs.fromBundle(requireArguments())
 
-        viewModelFactory = PokemonDetailsViewModelFactory(application, args.pokemonName)
+        viewModelFactory = PokemonDetailsViewModelFactory(application, args.pokemonId)
         viewModel = ViewModelProvider(this, viewModelFactory).get(PokemonDetailsViewModel::class.java)
 
         binding.pokemonDetailsViewModel = viewModel

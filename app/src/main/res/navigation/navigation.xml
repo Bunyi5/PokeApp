@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_titleFragment_to_randomPokemonFragment"
             app:destination="@id/randomPokemonFragment" />
+        <action
+            android:id="@+id/action_titleFragment_to_recycleFragment"
+            app:destination="@id/recycleFragment" />
     </fragment>
     <fragment
         android:id="@+id/pokemonListFragment"
@@ -32,12 +35,21 @@
         android:label="@string/pokemon_details"
         tools:layout="@layout/fragment_pokemon_details">
         <argument
-            android:name="pokemonName"
-            app:argType="string" />
+            android:name="pokemonId"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/randomPokemonFragment"
         android:name="com.example.pokeapp.pokemon.random.RandomPokemonFragment"
         android:label="@string/random_pokemon"
         tools:layout="@layout/fragment_random_pokemon" />
+    <fragment
+        android:id="@+id/recycleFragment"
+        android:name="com.example.pokeapp.pokemon.recycle.RecycleFragment"
+        android:label="@string/recycler_view"
+        tools:layout="@layout/fragment_recycle" >
+        <action
+            android:id="@+id/action_recycleFragment_to_pokemonDetailsFragment"
+            app:destination="@id/pokemonDetailsFragment" />
+    </fragment>
 </navigation>
