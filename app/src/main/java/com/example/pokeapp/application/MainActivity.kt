@@ -1,4 +1,4 @@
-package com.example.pokeapp.title
+package com.example.pokeapp.application
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

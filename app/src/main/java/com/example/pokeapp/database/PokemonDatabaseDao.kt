@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import androidx.room.Update
 
 @Dao
 interface PokemonDatabaseDao {
@@ -15,8 +14,8 @@ interface PokemonDatabaseDao {
     @Insert
     suspend fun insertAll(pokemonList: List<Pokemon>)
 
-    @Update
-    suspend fun update(pokemon: Pokemon)
+    @Query( "UPDATE pokemon_table SET pokemon_name = :pokeName, pokemon_url = :pokeUrl WHERE apiId = :apiId")
+    suspend fun update(apiId: Long, pokeName: String, pokeUrl: String)
 
     @Query("SELECT * from pokemon_table WHERE pokemon_name = :name")
     suspend fun getPokemon(name: String): Pokemon?
@@ -32,4 +31,7 @@ interface PokemonDatabaseDao {
 
     @Query("SELECT * FROM pokemon_table ORDER BY RANDOM() LIMIT 1")
     suspend fun getRandomPokemon(): Pokemon?
+
+    @Query("SELECT * from pokemon_table LIMIT 1")
+    suspend fun getTopPokemon(): Pokemon?
 }

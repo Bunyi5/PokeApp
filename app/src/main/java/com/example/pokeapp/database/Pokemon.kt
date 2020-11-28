@@ -11,6 +11,8 @@ data class Pokemon(
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0L,
 
+    var apiId: Long = 0L,
+
     @ColumnInfo(name = "pokemon_name")
     @Json(name = "name")
     var pokeName: String = "",

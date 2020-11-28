@@ -1,16 +1,15 @@
 package com.example.pokeapp.pokemon.list
 
-import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.pokeapp.R
@@ -30,7 +29,7 @@ class PokemonListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_pokemon_list,
@@ -46,7 +45,7 @@ class PokemonListFragment : Fragment() {
         binding.pokemonListViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.pokeNames.observe(viewLifecycleOwner, Observer { pokemonList ->
+        viewModel.pokeNames.observe(viewLifecycleOwner, { pokemonList ->
             pokemonList.forEach { pokemon ->
                 handleClick(binding.pokemonNames, pokemon)
             }
@@ -56,18 +55,25 @@ class PokemonListFragment : Fragment() {
     }
 
     private fun handleClick(layout: LinearLayout, pokemon: Pokemon) {
-        val button = Button(this.context)
-        button.text = pokemon.pokeName
-        button.textSize = 18F
-        button.setBackgroundColor(Color.TRANSPARENT)
-        button.setTextColor(ResourcesCompat.getColor(resources, R.color.yellow, null))
-        button.setOnClickListener {
+        val textView = TextView(this.context)
+        textView.text = pokemon.pokeName
+        textView.textSize = 24F
+        textView.setTextColor(ResourcesCompat.getColor(resources, R.color.yellow, null))
+        textView.gravity = Gravity.CENTER
+        textView.setPadding(15, 15, 15,15)
+        textView.layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.WRAP_CONTENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        ).apply {
+            gravity = Gravity.CENTER
+        }
+        textView.setOnClickListener {
             this.findNavController().navigate(
                 PokemonListFragmentDirections.actionPokemonListFragmentToPokemonDetailsFragment(
                     pokemon.id
                 )
             )
         }
-        layout.addView(button)
+        layout.addView(textView)
     }
 }

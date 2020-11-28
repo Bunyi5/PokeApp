@@ -17,31 +17,60 @@ abstract class PokemonDatabase : RoomDatabase() {
 
     abstract val pokemonDatabaseDao: PokemonDatabaseDao
 
+    private enum class Mode {
+        CREATE, OPEN
+    }
+
     private class PokemonDatabaseCallback(
         private val scope: CoroutineScope
     ) : RoomDatabase.Callback() {
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
-            createDatabase()
+            editDatabase(Mode.CREATE)
         }
 
-        private fun createDatabase() {
+        override fun onOpen(db: SupportSQLiteDatabase) {
+            super.onOpen(db)
+            editDatabase(Mode.OPEN)
+        }
+
+        private fun editDatabase(mode: Mode) {
             INSTANCE?.let { database ->
                 scope.launch {
                     withContext(Dispatchers.IO) {
-                        insertIntoDatabase(database.pokemonDatabaseDao)
+                        insertOrUpdateDatabase(database.pokemonDatabaseDao, mode)
                     }
                 }
             }
         }
 
-        private suspend fun insertIntoDatabase(pokemonDatabaseDao: PokemonDatabaseDao) {
+        private suspend fun insertOrUpdateDatabase(pokemonDatabaseDao: PokemonDatabaseDao, mode: Mode) {
             try {
-                pokemonDatabaseDao.insertAll(PokeApi.retrofitService.getPokemons().results)
-                Timber.i("Success: Pokemons received and inserted in the database")
+                val pokemonList: List<Pokemon> = PokeApi.retrofitService.getPokemons().results
+                pokemonList.forEach {
+                    setPokemonApiId(it)
+                }
+
+                when (mode) {
+                    Mode.CREATE -> {
+                        pokemonDatabaseDao.insertAll(pokemonList)
+                        Timber.i("Success: Pokemons received and inserted in the database")
+                    }
+                    Mode.OPEN -> {
+                        pokemonList.forEach {
+                            pokemonDatabaseDao.update(it.apiId, it.pokeName, it.pokeUrl)
+                        }
+                        Timber.i("Success: Pokemons received and updated in the database")
+                    }
+                }
             } catch (e: Exception) {
                 Timber.i("Failure: ${e.message}")
             }
+        }
+
+        private fun setPokemonApiId(pokemon: Pokemon) {
+            val pokeUrl = pokemon.pokeUrl
+            pokemon.apiId = pokeUrl.substring(34, pokeUrl.length - 1).toLong()
         }
     }
 

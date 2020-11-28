@@ -10,7 +10,7 @@ import com.example.pokeapp.database.PokemonDetails
 import com.example.pokeapp.network.PokeApi
 import kotlinx.coroutines.launch
 
-class PokemonDetailsViewModel(application: Application, var pokeId: Long) : AndroidViewModel(application) {
+class PokemonDetailsViewModel(application: Application, private var pokeId: Long) : AndroidViewModel(application) {
 
     private val database = PokemonDatabase.getInstance(application, viewModelScope).pokemonDatabaseDao
 
@@ -24,16 +24,13 @@ class PokemonDetailsViewModel(application: Application, var pokeId: Long) : Andr
 
     private fun setPokemonDetails() {
         viewModelScope.launch {
-            val id = getPokemonApiId()
-            if (id != null) {
-                val pokemonDetails: PokemonDetails = PokeApi.retrofitService.getPokemonDetails(id)
-                _pokemonDetails.value = pokemonDetails
-            }
+            val apiId = getPokemonApiId()
+            val pokemonDetails: PokemonDetails = PokeApi.retrofitService.getPokemonDetails(apiId)
+            _pokemonDetails.value = pokemonDetails
         }
     }
 
-    private suspend fun getPokemonApiId(): String? {
-        val pokeUrl = database.getPokemonById(pokeId)?.pokeUrl
-        return pokeUrl?.substring(34, pokeUrl.length - 1)
+    private suspend fun getPokemonApiId(): String {
+        return database.getPokemonById(pokeId)?.apiId.toString()
     }
 }

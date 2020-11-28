@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.pokeapp.R
@@ -22,7 +21,7 @@ class RecycleFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_recycle,
@@ -41,13 +40,13 @@ class RecycleFragment : Fragment() {
 
         binding.pokemonList.adapter = adapter
 
-        viewModel.pokemons.observe(viewLifecycleOwner, Observer {
+        viewModel.pokemons.observe(viewLifecycleOwner, {
             it?.let {
                 adapter.addHeaderAndSubmitList(it)
             }
         })
 
-        viewModel.navigateToPokemonDetails.observe(viewLifecycleOwner, Observer { pokeId ->
+        viewModel.navigateToPokemonDetails.observe(viewLifecycleOwner, { pokeId ->
             pokeId?.let {
                 this.findNavController().navigate(
                     RecycleFragmentDirections.actionRecycleFragmentToPokemonDetailsFragment(pokeId)

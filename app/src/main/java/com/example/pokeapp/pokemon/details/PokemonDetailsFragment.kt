@@ -8,7 +8,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.pokeapp.R
 import com.example.pokeapp.databinding.FragmentPokemonDetailsBinding
@@ -26,7 +25,7 @@ class PokemonDetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(
             inflater,
             R.layout.fragment_pokemon_details,
@@ -43,7 +42,7 @@ class PokemonDetailsFragment : Fragment() {
         binding.pokemonDetailsViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        viewModel.pokemonDetails.observe(viewLifecycleOwner, Observer { pokemonDetails ->
+        viewModel.pokemonDetails.observe(viewLifecycleOwner, { pokemonDetails ->
             binding.pokemonName.text = pokemonDetails.pokeName
             binding.pokemonHeight.text = pokemonDetails.height.toString()
             binding.pokemonWeight.text = pokemonDetails.weight.toString()
