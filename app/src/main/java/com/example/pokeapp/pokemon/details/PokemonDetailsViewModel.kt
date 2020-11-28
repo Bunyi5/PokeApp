@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.pokeapp.database.PokemonDatabase
-import com.example.pokeapp.database.PokemonDetails
 import com.example.pokeapp.network.PokeApi
+import com.example.pokeapp.network.details.PokemonDetails
 import kotlinx.coroutines.launch
 
 class PokemonDetailsViewModel(application: Application, private var pokeId: Long) : AndroidViewModel(application) {

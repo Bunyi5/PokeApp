@@ -5,14 +5,12 @@
     <string name="pokemon_logo">Pokemon logo</string>
     <string name="recycler_view">Recycler View</string>
     <string name="random_pokemon">Random Pokemon</string>
-    <string name="pokemon_types">Pokemon Types</string>
     <string name="pokemon_details">Pokemon Details</string>
     <string name="name" >Name:</string>
     <string name="hexadecimal">Hexadecimal:</string>
     <string name="press_button">Press the button to get a random pokemon!</string>
     <string name="pokemon_name">Name:</string>
     <string name="Abilities">Abilities:</string>
-    <string name="pokemons" >Pokemons:</string>
     <string name="height">Height:</string>
     <string name="weight">Weight:</string>
     <string name="moves">Moves:</string>

@@ -1,4 +1,4 @@
-package com.example.pokeapp.pokemon.recycle
+package com.example.pokeapp.pokemon.recycle.helper
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil

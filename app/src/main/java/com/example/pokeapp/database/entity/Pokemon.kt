@@ -1,4 +1,4 @@
-package com.example.pokeapp.database
+package com.example.pokeapp.database.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -11,6 +11,7 @@ data class Pokemon(
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0L,
 
+    @ColumnInfo(name = "api_id")
     var apiId: Long = 0L,
 
     @ColumnInfo(name = "pokemon_name")

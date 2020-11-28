@@ -1,8 +1,8 @@
-package com.example.pokeapp.pokemon.recycle
+package com.example.pokeapp.pokemon.recycle.helper
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
-import com.example.pokeapp.database.Pokemon
+import com.example.pokeapp.database.entity.Pokemon
 
 @BindingAdapter("pokemonNameText")
 fun TextView.setPokemonNameText(item: Pokemon?) {
@@ -11,9 +11,9 @@ fun TextView.setPokemonNameText(item: Pokemon?) {
     }
 }
 
-@BindingAdapter("pokemonUrlText")
-fun TextView.setPokemonUrlText(item: Pokemon?) {
+@BindingAdapter("pokemonApiId")
+fun TextView.setPokemonApiId(item: Pokemon?) {
     item?.let {
-        text = item.pokeUrl
+        text = item.apiId.toString()
     }
 }

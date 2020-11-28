@@ -1,7 +1,7 @@
 package com.example.pokeapp.network
 
-import com.example.pokeapp.database.PokemonDetails
-import com.example.pokeapp.database.PokemonList
+import com.example.pokeapp.database.entity.PokemonList
+import com.example.pokeapp.network.details.PokemonDetails
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -26,9 +26,9 @@ interface PokemonApiService {
     suspend fun getPokemons(): PokemonList
 
     @GET("pokemon/{id}")
-    suspend fun getPokemonDetails(@Path("id")id: String?): PokemonDetails
+    suspend fun getPokemonDetails(@Path("id") id: String?): PokemonDetails
 }
 
 object PokeApi {
-    val retrofitService : PokemonApiService by lazy { retrofit.create(PokemonApiService::class.java) }
+    val retrofitService: PokemonApiService by lazy { retrofit.create(PokemonApiService::class.java) }
 }

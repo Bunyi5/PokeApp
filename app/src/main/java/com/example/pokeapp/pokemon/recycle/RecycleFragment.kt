@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.pokeapp.R
 import com.example.pokeapp.databinding.FragmentRecycleBinding
+import com.example.pokeapp.pokemon.recycle.helper.PokemonAdapter
+import com.example.pokeapp.pokemon.recycle.helper.PokemonListener
 
 class RecycleFragment : Fragment() {
 

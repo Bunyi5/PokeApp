@@ -1,4 +1,4 @@
-package com.example.pokeapp.pokemon.recycle
+package com.example.pokeapp.pokemon.recycle.helper
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pokeapp.R
-import com.example.pokeapp.database.Pokemon
+import com.example.pokeapp.database.entity.Pokemon
 import com.example.pokeapp.databinding.ListItemPokemonBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

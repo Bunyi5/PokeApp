@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.pokeapp.R
-import com.example.pokeapp.database.Pokemon
+import com.example.pokeapp.database.entity.Pokemon
 import com.example.pokeapp.databinding.FragmentPokemonListBinding
 
 /**

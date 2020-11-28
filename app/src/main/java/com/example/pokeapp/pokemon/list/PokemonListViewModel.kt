@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.pokeapp.database.Pokemon
+import com.example.pokeapp.database.entity.Pokemon
 import com.example.pokeapp.database.PokemonDatabase
 import timber.log.Timber
 

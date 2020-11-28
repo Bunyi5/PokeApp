@@ -1,6 +1,6 @@
-package com.example.pokeapp.pokemon.recycle
+package com.example.pokeapp.pokemon.recycle.helper
 
-import com.example.pokeapp.database.Pokemon
+import com.example.pokeapp.database.entity.Pokemon
 
 sealed class DataItem {
     abstract val id: Long

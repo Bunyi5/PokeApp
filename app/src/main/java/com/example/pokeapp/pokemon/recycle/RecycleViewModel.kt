@@ -5,8 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.pokeapp.database.Pokemon
 import com.example.pokeapp.database.PokemonDatabase
+import com.example.pokeapp.database.entity.Pokemon
 
 class RecycleViewModel(application: Application) : AndroidViewModel(application) {
 
